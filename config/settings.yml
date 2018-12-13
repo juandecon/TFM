@@ -1,0 +1,3 @@
+moodle:
+  host: 'http://localhost:81/moodle'
+  token: d0fa9727527d0172ed9763134235dad9

@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  razonsocial: 
+  cif: 
+  domicilio: 
+  localidad: 
+  codigopostal: 
+  email: 
+  nombrerepresentante: 
+  fechaoferta: 
+  convenio: 
+  actividad: 
+  tutorempresa: 
+  emailtutorempresa: 
+  numeroalumnos: 
+  alumnosasignados: 
+
+two:
+  razonsocial: 
+  cif: 
+  domicilio: 
+  localidad: 
+  codigopostal: 
+  email: 
+  nombrerepresentante: 
+  fechaoferta: 
+  convenio: 
+  actividad: 
+  tutorempresa: 
+  emailtutorempresa: 
+  numeroalumnos: 
+  alumnosasignados: 
