@@ -17,7 +17,7 @@ index do
     selectable_column
     id_column
     column "Competencia", :nombre
-    column "Marco de competencias", :competency_framework
+    column "Marcos de competencias", :competency_framework
     actions
 end
 filter :nombre, label:'Competencia'
