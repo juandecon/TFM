@@ -71,4 +71,3 @@ gem 'moodle-api'
 gem 'awesome_print', require: "awesome_print"
 
 gem 'devise-i18n'
-#gem 'devise-i18n-views'
