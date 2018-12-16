@@ -32,7 +32,7 @@ ActiveAdmin.register Empresa do
         column "Teléfono", :telefono
         column "E-mail", :email
         column "Nombre representante", :nombrerepresentante    
-        #column "Fecha oferta", :fechaoferta
+        column "Fecha oferta", :fechaoferta
         column "Convenio", :convenio
         column "Actividad", :actividad
         column "Tutor empresa", :tutorempresa
@@ -45,26 +45,32 @@ ActiveAdmin.register Empresa do
     tabs do
       tab 'Empresa' do
         f.inputs 'Datos de empresa' do
-          f.input :razonsocial
-          f.input :cif
-          f.input :domicilio
-          f.input :localidad
-          f.input :codigopostal
-          #f.input :telefono
-          f.input :email
+          f.input :razonsocial, label:"Razón social"
+          f.input :cif, label:"CIF"
+          f.input :domicilio, label:"Domicilio"
+          f.input :localidad, label:"Localidad"
+          f.input :codigopostal, label:"Código Postal"
+          f.input :telefono, label:"Teléfono"
+          f.input :email, label:"E-mail"
         end
       end
 
       tab 'Convenio', html_options: { class: 'specific_css_class' } do
         f.inputs 'Datos del convenio' do
-          f.input :nombrerepresentante
-          f.input :fechaoferta
-          f.input :convenio
-          f.input :actividad
-          f.input :tutorempresa
-          f.input :emailtutorempresa
-          f.input :numeroalumnos
-          f.input :alumnosasignados
+          f.input :nombrerepresentante, label:"Nombre representante"
+          f.input :fechaoferta, label:"Fecha de la oferta", as: :datepicker,
+                                                            datepicker_options: {
+                                                              min_date: "1-12-2018",
+                                                              max_date: "300D",
+                                                              regional: "es",
+                                                              dateFormat: "dd/mm/yy"
+                                                            }
+          f.input :convenio, label:"Convenio"
+          f.input :actividad, label:"Actividad"
+          f.input :tutorempresa, label:"Tutor de empresa"
+          f.input :emailtutorempresa, label:"E-mail Tutor de empresa"
+          f.input :numeroalumnos, label:"Alumnos ofertados"
+          f.input :alumnosasignados, label:"Alumnos asignados"
         end
       end
     end
