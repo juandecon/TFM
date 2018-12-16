@@ -190,3 +190,6 @@ es:
       block: "Lista"
       grid: "Grilla"
       blog: "Blog"
+    dashboard_welcome:
+      welcome: "Bienvenido al Trabajo Fin de Máster de Juan Ignacio Contreras Rodríguez."
+      call_to_action: "Selecciona en el menú la tarea que quieres realizar"

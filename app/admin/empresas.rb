@@ -19,7 +19,7 @@ ActiveAdmin.register Empresa do
   filter :localidad
   filter :convenio
   filter :actividad
-  filter :fechaoferta    
+  filter :fechaoferta, label: 'Fecha oferta'    
 
   index do
         selectable_column
@@ -32,7 +32,7 @@ ActiveAdmin.register Empresa do
         column "Teléfono", :telefono
         column "E-mail", :email
         column "Nombre representante", :nombrerepresentante    
-        column "Fecha oferta", :fechaoferta
+        #column "Fecha oferta", :fechaoferta
         column "Convenio", :convenio
         column "Actividad", :actividad
         column "Tutor empresa", :tutorempresa
