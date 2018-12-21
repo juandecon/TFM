@@ -3,4 +3,7 @@ class AdminUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
+  belongs_to :perfil
+  belongs_to :category, optional: true
+  belongs_to :empresa, optional: true
 end
