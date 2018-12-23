@@ -68,6 +68,6 @@ gem 'config'
 
 gem 'moodle-api'
 
-gem 'awesome_print', require: "awesome_print"
+gem 'awesome_print', require: "ap"
 
 gem 'devise-i18n'

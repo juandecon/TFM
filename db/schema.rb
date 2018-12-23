@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_193423) do
+ActiveRecord::Schema.define(version: 2018_12_22_123608) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(version: 2018_12_21_193423) do
     t.integer "competency_framework_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "moodle_id"
+    t.string "moodle_competencyframeworkid"
+    t.string "moodle_idnumber"
     t.index ["competency_framework_id"], name: "index_competencies_on_competency_framework_id"
   end
 
@@ -64,6 +67,20 @@ ActiveRecord::Schema.define(version: 2018_12_21_193423) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "moodle_id"
+    t.string "moodle_contextid"
+    t.string "moodle_idnumber"
+    t.string "moodle_contextname"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "startdate"
+    t.datetime "enddate"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_courses_on_category_id"
   end
 
   create_table "empresas", force: :cascade do |t|

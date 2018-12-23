@@ -12,15 +12,27 @@ ActiveAdmin.register Competency, as:"Competencias" do
 #   permitted
 # end
 menu priority: 5
-permit_params :nombre, :competency_framework_id
+#permit_params :nombre, :competency_framework_id
+actions :index, :show
 index do
     selectable_column
     id_column
     column "Competencia", :nombre
     column "Marcos de competencias", :competency_framework
+    column "Curso", :category
     actions
 end
 filter :nombre, label:'Competencia'
 filter :competency_framework, label:'Marco de competencias'
+filter :moodle_id, label: 'ID Moodle'
+filter :moodle_idnumber, label: 'ID Number Moodle'
 #belongs_to :competency_framework
+index do
+    id_column
+    column 'Nombre', :nombre
+    column 'Marco de competencia', :competency_framework
+    column 'ID Moodle', :moodle_id
+    column 'ID Number Moodle', :moodle_idnumber
+    actions
+  end
 end

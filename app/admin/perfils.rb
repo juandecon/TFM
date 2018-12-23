@@ -11,6 +11,7 @@ ActiveAdmin.register Perfil, as:"Perfiles" do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+
 menu priority: 3
 permit_params :nombre
 index do
