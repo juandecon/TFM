@@ -39,4 +39,4 @@ config/environments/*.local.yml
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-Gemfile.lock
+#Gemfile.lock
