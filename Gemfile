@@ -76,3 +76,5 @@ gem 'moodle-api'
 gem 'awesome_print', require: "ap"
 
 gem 'devise-i18n'
+
+gem 'mysql2'
