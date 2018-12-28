@@ -7,6 +7,7 @@ class CompetencyFramework < ApplicationRecord
     def self.migrate
         params = { context: { contextid: 1 } }
         items = Api::CompetencyFramework.all(params)
+        ap items
         items.each do |item|
           cf = CompetencyFramework.find_or_initialize_by(moodle_id: item['id'].to_s)
           cf.nombre = item['shortname']

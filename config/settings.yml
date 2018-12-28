@@ -1,6 +1,6 @@
 moodle:
-  host: 'https://tfm-jicr.moodlecloud.com/'
-  token: 9592a219c5757f40da5250cae8a9903c
+  host: 'https://tfm-jicr.moodlecloud.com'
+  token: fa468f8cc1f6d28b13c4fa17826945f5
 
   # Aquí están los valores de local
   #host: 'http://localhost:81/moodle'

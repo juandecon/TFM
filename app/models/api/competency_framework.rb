@@ -18,7 +18,11 @@ module Api
       # - :onlyvisible Integer (0|1)
       # - :query String
       def self.all(params = {})
-        Moodle::Api.core_competency_list_competency_frameworks(params)
+        begin
+         Moodle::Api.core_competency_list_competency_frameworks(params)
+        rescue
+          []
+        end  
       end
     end
   end 
