@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_123608) do
+ActiveRecord::Schema.define(version: 2018_12_28_215505) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 2018_12_22_123608) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "assignments", force: :cascade do |t|
+    t.string "name"
+    t.integer "course_id"
+    t.string "moodle_cmid"
+    t.datetime "duedate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_assignments_on_course_id"
+  end
+
+  create_table "assignments_competencies", force: :cascade do |t|
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -61,6 +74,9 @@ ActiveRecord::Schema.define(version: 2018_12_22_123608) do
     t.string "moodle_competencyframeworkid"
     t.string "moodle_idnumber"
     t.index ["competency_framework_id"], name: "index_competencies_on_competency_framework_id"
+  end
+
+  create_table "competencies_courses", force: :cascade do |t|
   end
 
   create_table "competency_frameworks", force: :cascade do |t|
@@ -80,7 +96,13 @@ ActiveRecord::Schema.define(version: 2018_12_22_123608) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "moodle_id"
+    t.string "moodle_shortname"
+    t.string "moodle_fullname"
     t.index ["category_id"], name: "index_courses_on_category_id"
+  end
+
+  create_table "courses_students", force: :cascade do |t|
   end
 
   create_table "empresas", force: :cascade do |t|
@@ -103,8 +125,28 @@ ActiveRecord::Schema.define(version: 2018_12_22_123608) do
     t.string "telefono"
   end
 
+  create_table "grades", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "assignment_id"
+    t.string "score"
+    t.string "moodle_userid"
+    t.string "moodle_assignment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_grades_on_assignment_id"
+    t.index ["student_id"], name: "index_grades_on_student_id"
+  end
+
   create_table "perfils", force: :cascade do |t|
     t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "moodle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

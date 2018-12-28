@@ -1,0 +1,11 @@
+tabs do
+  tab 'Información' do
+    h2 'Migración de datos de Moodle'
+    h3 'El proceso de migración de datos puede durar varios minutos'
+  
+    form action: '/admin/migrate', method: :post do
+      input type: :submit, value: 'Ejecutar'
+    end
+
+  end
+end

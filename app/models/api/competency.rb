@@ -1,7 +1,6 @@
 module Api
     class Competency
   
-  
       # Llamada a la función API core_competency_list_competencies
       # 
       # Ej: params = { filters: [{ column: 'competencyframeworkid', value: '1' }]}
