@@ -1,38 +1,28 @@
 ActiveAdmin.register Competency, as:"Competencias" do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-menu priority: 5
-#permit_params :nombre, :competency_framework_id
-actions :index, :show
-index do
-    selectable_column
-    id_column
-    column "Competencia", :nombre
-    column "Marcos de competencias", :competency_framework
-    column "Curso", :category
-    actions
-end
-filter :nombre, label:'Competencia'
-filter :competency_framework, label:'Marco de competencias'
-filter :moodle_id, label: 'ID Moodle'
-filter :moodle_idnumber, label: 'ID Number Moodle'
-#belongs_to :competency_framework
-index do
-    id_column
-    column 'Nombre', :nombre
-    column 'Marco de competencia', :competency_framework
-    column 'ID Moodle', :moodle_id
-    column 'ID Number Moodle', :moodle_idnumber
-    actions
-  end
+
+    # Posición en la barra de menú.
+    menu priority: 4
+
+    # como son datos exportados, las operaciones permitidas son ver y mostrar.
+    actions :index, :show
+
+    # Define los campos por los cuales podemos realizar filtros.
+    filter :name, label:'Competencia'
+    filter :competency_framework, label:'Marco de competencias'
+
+    # Reescribe el método index para mostrar los datos con el formato y orden indicado
+    index do
+        id_column
+        column 'Nombre', :name
+        column 'Marco de competencias', :competency_framework
+        actions
+    end
+
+    # Reescribe el método show para mostrar los datos con formato de tabla.
+    show do
+        attributes_table do
+          row('Nombre'){ |r| r.name }
+          row('Marco de competencias'){ |r| r.competency_framework }
+        end
+      end
 end

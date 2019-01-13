@@ -1,0 +1,44 @@
+<div class="row" style="width: 100%">
+  <div>
+    <%= high_chart("report", @chart) %>
+  </div>
+  <div>
+<% if @student.fct? %>
+    <p>Estudiante asignado a empresa: <strong><%= @student.fct.empresa.name %></strong></p>
+<% else %>
+    <p>Estudiante asignado a empresa: <strong>"Ninguna"</strong></p>
+    <input type="hidden" id="student_id" value="<%= @student.id %>">
+    <% if @empresas.empty? %>
+    <p>Necesitas localizar una empresa que se dedique a esta actividad</p>
+    <% else %>
+      <% @empresas.each do |empresa| %>
+    <ul>
+      <li><%= empresa.name %> <a class="asignar" data-empresa-id="<%= empresa.id %>" href="#">Asignar</a></li>
+    </ul>
+    <% end %>
+  <% end %>
+<script>
+$(document).ready(function(){
+  $('a.asignar').on('click', function(e){
+    e.preventDefault();
+    empresa_id = $(this).attr('data-empresa-id');
+    $.ajax({
+      url: '/services/asignar_empresa',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        student_id: $('#student_id').val(),
+        empresa_id: empresa_id
+      },
+      success: function(xhr){
+        if(xhr.result != null) {
+          location.reload();
+        }
+      }
+    })
+  });
+});
+</script>
+  </div>
+<% end %>
+</div>

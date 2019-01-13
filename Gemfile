@@ -48,6 +48,10 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
@@ -65,7 +69,7 @@ gem 'activeadmin'
 
 # Plus integrations with:
 gem 'devise'
-gem 'cancan' # or cancancan
+gem 'cancancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 
@@ -78,3 +82,5 @@ gem 'awesome_print', require: "ap"
 gem 'devise-i18n'
 
 gem 'mysql2'
+
+gem 'lazy_high_charts'

@@ -1,30 +1,24 @@
 ActiveAdmin.register Empresa do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-  menu priority: 6
-  permit_params :razonsocial, :cif, :domicilio, :localidad, :codigopostal, :telefono, :email, 
+
+  # Posición en la barra de menú.
+  menu priority: 3
+
+  # Los campos que se pueden introducir en el formulario
+  permit_params :name, :cif, :domicilio, :localidad, :codigopostal, :telefono, :email, 
                 :nombrerepresentante, :fechaoferta, :convenio, :actividad, :tutorempresa,
                 :emailtutorempresa, :numeroalumnos, :alumnosasignados
-                
+   
+  # Define los campos por los cuales podemos realizar filtros.              
   filter :localidad
   filter :convenio
   filter :actividad
   filter :fechaoferta, label: 'Fecha oferta'    
 
+  # Reescribe el método index para mostrar los datos con el formato y orden indicado
   index do
         selectable_column
         id_column       
-        column "Razón social", :razonsocial
+        column "Razón social", :name
         column "CIF", :cif
         column "Domicilio", :domicilio
         column "Localidad", :localidad
@@ -37,15 +31,17 @@ ActiveAdmin.register Empresa do
         column "Actividad", :actividad
         column "Tutor empresa", :tutorempresa
         column "E-mail tutor empresa", :emailtutorempresa
-        column "Número alumnos", :numeroalumnos
+        column "Cupo de alumnos", :numeroalumnos
         column "Alumnos asignados", :alumnosasignados
         actions
   end
+
+  # Reescribe el método form para mostrar el formulario con el formato y orden indicado
   form do |f|
     tabs do
       tab 'Empresa' do
         f.inputs 'Datos de empresa' do
-          f.input :razonsocial, label:"Razón social"
+          f.input :name, label:"Razón social"
           f.input :cif, label:"CIF"
           f.input :domicilio, label:"Domicilio"
           f.input :localidad, label:"Localidad"
@@ -69,12 +65,35 @@ ActiveAdmin.register Empresa do
           f.input :actividad, label:"Actividad"
           f.input :tutorempresa, label:"Tutor de empresa"
           f.input :emailtutorempresa, label:"E-mail Tutor de empresa"
-          f.input :numeroalumnos, label:"Alumnos ofertados"
+          f.input :numeroalumnos, label:"Cupo de alumnos"
           f.input :alumnosasignados, label:"Alumnos asignados"
         end
       end
     end
-    f.actions
+    f.actions do
+      f.action :submit, label: "Guardar empresa"
+      f.action :cancel, :as => :link, label: 'Cancelar', wrapper_html: {class: :cancel}
+    end
+  end
+
+  # Reescribe el método show para mostrar los datos con formato de tabla.
+  show do
+    attributes_table do
+      row('Razón social'){ |r| r.name }
+      row('CIF'){ |r| r.cif }
+      row('Domicilio'){ |r| r.domicilio }
+      row('Localidad'){ |r| r.localidad }
+      row('Código postal'){ |r| r.codigopostal }
+      row('E-Mail'){ |r| r.email }
+      row('Nombre representante'){ |r| r.nombrerepresentante }
+      row('Fecha de la oferta'){ |r| r.fechaoferta }
+      row('Convenio'){ |r| r.convenio }
+      row('Actividad'){ |r| r.actividad }
+      row('Tutor empresa'){ |r| r.tutorempresa }
+      row('E-mail tutor empresa'){ |r| r.emailtutorempresa }
+      row('Cupo de alumnos'){ |r| r.numeroalumnos }
+      row('Alumnos asignados'){ |r| r.alumnosasignados }
+    end
   end
 
 end

@@ -1,48 +1,28 @@
 ActiveAdmin.register Course, as:"Asignatura" do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+
+    # Posición en la barra de menú.
     menu priority: 8
-    permit_params :nombre
-    index do 
-        selectable_column
+
+    # Como son datos exportados, las operaciones permitidas son ver y mostrar.
+    actions :index, :show
+
+    # Define los campos por los cuales podemos realizar filtros.
+    filter :name, label: 'Nombre' 
+    filter :competencies, label: 'Competencia'
+
+    # Reescribe el método index para mostrar los datos con el formato y orden indicado
+    index do
         id_column
-        column "Asignaturas", :nombre
-        column "Fecha inicio", :startdate
-        column "Fecha fin", :enddate
+        column 'Nombre', :name
+        column 'ID Moodle', :moodle_id
         actions
     end
-    filter :nombre
-    filter :category, label:'Curso'
 
-    form do |f|
-        f.inputs do
-            f.input :category, label:"Curso"
-            f.input :nombre, label:"Nombre"
-            f.input :startdate, label:"Fecha inicio", as: :datepicker,
-                                                                    datepicker_options: {
-                                                                    min_date: "1-12-2018",
-                                                                    max_date: "300D",
-                                                                    regional: "es",
-                                                                    dateFormat: "dd/mm/yy"
-                                                                    }
-            f.input :startdate, label:"Fecha fin", as: :datepicker,
-                                                                    datepicker_options: {
-                                                                    min_date: "1-12-2018",
-                                                                    max_date: "300D",
-                                                                    regional: "es",
-                                                                    dateFormat: "dd/mm/yy"
-                                                                   } 
+    # Reescribe el método show para mostrar los datos con formato de tabla.
+    show do
+        attributes_table do
+        row('Nombre'){ |r| r.name }
+        row('ID-Moodle'){ |r| r.moodle_id }
         end
-        f.actions
     end
 end

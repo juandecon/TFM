@@ -1,3 +1,4 @@
+# URL de Moodle y token de conexión para el webservice
 moodle:
   host: 'https://tfm-jicr.moodlecloud.com'
   token: fa468f8cc1f6d28b13c4fa17826945f5

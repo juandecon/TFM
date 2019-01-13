@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_215505) do
+ActiveRecord::Schema.define(version: 2019_01_13_112004) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
     t.datetime "updated_at", null: false
     t.string "nombre"
     t.string "apellidos"
-    t.integer "perfil_id"
     t.integer "category_id"
     t.integer "empresa_id"
+    t.integer "role_id"
     t.index ["category_id"], name: "index_admin_users_on_category_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["empresa_id"], name: "index_admin_users_on_empresa_id"
-    t.index ["perfil_id"], name: "index_admin_users_on_perfil_id"
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_admin_users_on_role_id"
   end
 
   create_table "assignments", force: :cascade do |t|
@@ -53,10 +53,13 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
     t.datetime "duedate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "moodle_id"
     t.index ["course_id"], name: "index_assignments_on_course_id"
   end
 
   create_table "assignments_competencies", force: :cascade do |t|
+    t.integer "assignment_id"
+    t.integer "competency_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
   end
 
   create_table "competencies", force: :cascade do |t|
-    t.string "nombre"
+    t.string "name"
     t.integer "competency_framework_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,10 +80,12 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
   end
 
   create_table "competencies_courses", force: :cascade do |t|
+    t.integer "competency_id"
+    t.integer "course_id"
   end
 
   create_table "competency_frameworks", force: :cascade do |t|
-    t.string "nombre"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "moodle_id"
@@ -90,7 +95,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "nombre"
+    t.string "name"
     t.datetime "startdate"
     t.datetime "enddate"
     t.integer "category_id"
@@ -103,10 +108,12 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
   end
 
   create_table "courses_students", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "student_id"
   end
 
   create_table "empresas", force: :cascade do |t|
-    t.string "razonsocial"
+    t.string "name"
     t.string "cif"
     t.string "domicilio"
     t.string "localidad"
@@ -125,6 +132,14 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
     t.string "telefono"
   end
 
+  create_table "fcts", force: :cascade do |t|
+    t.string "student_moodle_id"
+    t.integer "empresa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_fcts_on_empresa_id"
+  end
+
   create_table "grades", force: :cascade do |t|
     t.integer "student_id"
     t.integer "assignment_id"
@@ -137,10 +152,11 @@ ActiveRecord::Schema.define(version: 2018_12_28_215505) do
     t.index ["student_id"], name: "index_grades_on_student_id"
   end
 
-  create_table "perfils", force: :cascade do |t|
-    t.string "nombre"
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "code"
   end
 
   create_table "students", force: :cascade do |t|

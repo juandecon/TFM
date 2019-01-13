@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa: one
+  student_moodle_id: MyString
+
+two:
+  empresa: two
+  student_moodle_id: MyString

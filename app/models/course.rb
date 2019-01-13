@@ -1,5 +1,4 @@
 class Course < ApplicationRecord
-  class Course < ApplicationRecord
     has_and_belongs_to_many :competencies
     has_and_belongs_to_many :students
     has_many :assignments
@@ -106,5 +105,4 @@ class Course < ApplicationRecord
         self.students << student
       end
     end
-  end
 end
